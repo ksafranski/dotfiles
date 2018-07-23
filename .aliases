@@ -1,0 +1,23 @@
+# Functions
+function mkdircd () { mkdir -p "$@" && cd $_; }
+
+# Shell
+alias ls='ls -asl --group-directories-first --color'
+alias mkdir=mkdircd
+
+# Git
+alias ga='git add --all'
+alias gc='git commit -m'
+alias gac='git add --all && git commit -m'
+alias gpu='git push origin $(git rev-parse --abbrev-ref HEAD)'
+alias gpl='git pull origin $(git rev-parse --abbrev-ref HEAD)'
+alias gs='git status'
+alias gf='git fetch --all'
+alias gbr='git checkout -b'
+
+# Docker
+alias dockown='sudo chown -R $USER:$USER ~/.npm'
+alias dockkill='docker kill $(docker ps -q) && docker rm $(docker ps -a -q)'
+alias dockcleani='docker rmi $(docker images -f "dangling=true" -q)'
+alias dockcleanv='docker run -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker:/var/lib/docker --rm martin/docker-cleanup-volumes'
+alias dockclean='dockkill && dockcleani && dockcleanv'
